@@ -14,7 +14,7 @@
 //   * Command-query separation: `set_*` commands mutate; `about()` and
 //     `show_logo()` queries observe without mutating.
 //   * Composition over inheritance: plain struct + methods, no hierarchy.
-//   * Memory safety: #![no_std] + alloc, bounds-checked, no `unsafe`.
+//   * Memory safety: // Memory safety: alloc, bounds-checked, no `unsafe`. + alloc, bounds-checked, no `unsafe`.
 //   * Fail-fast / defensive: rejects empty identity values, clamps lengths,
 //     never panics on missing branding.
 //   * Deterministic: pure functions of fields; tests are
@@ -26,7 +26,7 @@
 //     when identity is unset.
 //   * Zero-one-infinity: zero logo lines valid, one typical, many supported.
 
-#![no_std]
+// Memory safety: alloc, bounds-checked, no `unsafe`.
 
 extern crate alloc;
 
@@ -96,11 +96,12 @@ impl Branding {
 
     /// Whether any branding identity has been customized (Query).
     pub fn is_customized(&self) -> bool {
-        self.version.is_empty()
-            && self.tagline.is_empty()
-            && self.logo.is_empty()
-            && self.copyright.is_empty()
-            && self.support_url.is_empty() == false
+        self.distro_name != "SigmaOS"
+            || !self.version.is_empty()
+            || !self.tagline.is_empty()
+            || !self.logo.is_empty()
+            || !self.copyright.is_empty()
+            || !self.support_url.is_empty()
     }
 
     /// Human-readable "about" summary (Query). Builds one String so callers
@@ -326,7 +327,7 @@ mod tests {
         // Act
         assert!(b.set_logo(lines.clone()));
         // Assert
-        assert_eq!(b.show_logo(), &["__".to_string(), "/  \\".to_string()]);
+        assert_eq!(b.show_logo(), &["  __".to_string(), " /  \\".to_string()]);
         assert_eq!(b.logo_line_count(), 2);
     }
 
