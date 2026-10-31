@@ -1,15 +1,13 @@
-# SigmaOS-brand-logo
+# SigmaOS Brand Logo
 
-Part of the SigmaOS multi-repository architecture.
+This crate exports a `Branding` data model for product name, version, tagline,
+copyright, support URL, and caller-provided logo lines. Setters validate and
+store metadata, and `about()` formats it as text. The crate does not load image
+assets or render a logo, wallpaper, or screensaver.
 
-## Principles
-- MODULARITY: Single responsibility per repository
-- LOOSE COUPLING: Minimal dependencies between repos
-- INTERFACE SEGREGATION: Clear, focused public APIs
-- DETERMINISTIC TESTING: Comprehensive test coverage
+The crate depends on the sibling `SigmaOS-kernel` checkout through a local
+path.
 
 ## License
-SPDX-License-Identifier: GPL-3.0-or-later
 
-## Copyright
-Copyright (C) 2026 SigmaOS Project
+GPL-3.0-or-later. See [`LICENSE`](LICENSE) and [`Cargo.toml`](Cargo.toml).
