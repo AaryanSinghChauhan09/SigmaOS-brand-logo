@@ -1,6 +1,6 @@
 [component]
 name = "SigmaOS-brand-logo"
 tier = 4
-description = "Vector brand marks, SVG emblems, and distributor visual identity assets"
+description = "SigmaOS brand logo & identity assets"
 contracts = ['brand-identity-assets', 'svg-emblems', 'distro-logo-pack']
 upstream_inspirations = ['https://github.com/linuxmint/brand-logo']
